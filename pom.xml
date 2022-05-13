@@ -9,8 +9,8 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>myPlaywrightProject</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <!-- FIXME customize target site here -->
+  <url>https://amazon.co.uk</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -21,10 +21,15 @@ public class AmazonLoginTest {
     page.navigate("https://amazon.co.uk");
     page.click("#sp-cc-accept");
     page.click("#nav-link-accountList");
+
+    // standard lines
     page.fill("input[name='email']", USER_NAME);
     page.click("input[id='continue']");
     page.fill("input[name='password']", USER_PASS);
     page.click("#signInSubmit");
+
+    // POM method does not work here flow is different.
+    // loginPage.loginToAppWith(USER_NAME, USER_PASS);
 
     //loginPage.loginToAppWith(USER_NAME, USER_PASS);
     assertThat(page.locator(".nav-line-2")).hasText(LOGGED_IN_NAV_TEXT);

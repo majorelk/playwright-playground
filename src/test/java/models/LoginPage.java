@@ -19,10 +19,12 @@ public class LoginPage {
   }
 
   public void loginToAppWith(String username, String password) {
-
-    usernameField.fill(username);
-    continueButton.click();
-    passwordField.fill(password);
-    loginButton.click();
+    page.waitForNavigation(() -> {
+      usernameField.fill(username);
+      continueButton.click();
+      passwordField.waitFor();
+      passwordField.fill(password);
+      loginButton.click();
+    });
   }
 }

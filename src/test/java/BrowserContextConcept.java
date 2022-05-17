@@ -1,5 +1,4 @@
 import com.microsoft.playwright.*;
-import org.junit.Assert;
 
 public class BrowserContextConcept {
 

@@ -1,4 +1,3 @@
-import com.microsoft.playwright.options.*;
 import com.microsoft.playwright.*;
 
 import java.nio.file.Paths;

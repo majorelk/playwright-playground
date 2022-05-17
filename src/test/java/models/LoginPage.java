@@ -12,13 +12,14 @@ public class LoginPage {
 
   public LoginPage(Page page) {
     this.page = page;
-    this.loginButton = page.locator("input[type='email']");
+    this.loginButton = page.locator("#signInSubmit");
     this.continueButton = page.locator("input[id='continue']");
-    this.passwordField = page.locator("input[type='email']");
-    this.usernameField = page.locator("input[type='password']");
+    this.passwordField = page.locator("input[name='email']");
+    this.usernameField = page.locator("input[name='password']");
   }
 
   public void loginToAppWith(String username, String password) {
+
     usernameField.fill(username);
     continueButton.click();
     passwordField.fill(password);

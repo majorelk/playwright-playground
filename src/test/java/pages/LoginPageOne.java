@@ -1,7 +1,5 @@
 package pages;
 
-import com.microsoft.playwright.*;
-
 public class LoginPageOne {
 
   // public void withUi(String userName, String passWord) {

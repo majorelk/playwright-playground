@@ -6,8 +6,8 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import models.LoginPage;
 
 public class AmazonLoginTest {
-  static final String USER_NAME = null;
-  static final String USER_PASS = null;
+  static final String USER_NAME = "lamia_poi@hotmail.co.uk";
+  static final String USER_PASS = "zbhEbKq5G86eKZ9w";
   static final String LOGGED_IN_NAV_TEXT = "Account & Lists";
 
   Playwright playwright = Playwright.create();
@@ -17,7 +17,7 @@ public class AmazonLoginTest {
 
 
   @Test
-  void shouldLoginToApplication() throws InterruptedException {
+  void shouldLoginToApplication() {
     page.navigate("https://amazon.co.uk");
     page.click("#sp-cc-accept");
     page.click("#nav-link-accountList");
@@ -32,6 +32,23 @@ public class AmazonLoginTest {
     // loginPage.loginToAppWith(USER_NAME, USER_PASS);
     //loginPage.loginToAppWith(USER_NAME, USER_PASS);
     assertThat(page.locator("#nav-link-accountList")).containsText(LOGGED_IN_NAV_TEXT);
+  }
+
+  @Test
+  void shouldNotContinueWithWrongEmail() {
+    page.navigate("https://amazon.co.uk");
+    page.click("#sp-cc-accept");
+    page.click("#nav-link-accountList");
+
+    // standard lines
+    page.fill("input[name='email']", "fakeEmai@fakemail.com");
+    page.click("input[id='continue']");
+
+    // POM method does not work here flow is different.
+    // loginPage.loginToAppWith(USER_NAME, USER_PASS);
+    //loginPage.loginToAppWith(USER_NAME, USER_PASS);
+    assertThat(page.locator("#auth-error-message-box")).containsText("There was a problem");
+    assertThat(page.locator("#auth-error-message-box")).containsText("We cannot find an account with that e-mail address");
   }
 
 }

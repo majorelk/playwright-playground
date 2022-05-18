@@ -6,8 +6,8 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import models.LoginPage;
 
 public class AmazonLoginTest {
-  static final String USER_NAME = "naveen@gmail.com";
-  static final String USER_PASS = "123456";
+  static final String USER_NAME = null;
+  static final String USER_PASS = null;
   static final String LOGGED_IN_NAV_TEXT = "Account & Lists";
 
   Playwright playwright = Playwright.create();
@@ -17,7 +17,7 @@ public class AmazonLoginTest {
 
 
   @Test
-  void shouldLoginToApplication() {
+  void shouldLoginToApplication() throws InterruptedException {
     page.navigate("https://amazon.co.uk");
     page.click("#sp-cc-accept");
     page.click("#nav-link-accountList");
@@ -30,9 +30,8 @@ public class AmazonLoginTest {
 
     // POM method does not work here flow is different.
     // loginPage.loginToAppWith(USER_NAME, USER_PASS);
-
     //loginPage.loginToAppWith(USER_NAME, USER_PASS);
-    assertThat(page.locator(".nav-line-2")).hasText(LOGGED_IN_NAV_TEXT);
+    assertThat(page.locator("#nav-link-accountList")).containsText(LOGGED_IN_NAV_TEXT);
   }
 
 }

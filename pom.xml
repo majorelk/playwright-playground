@@ -61,7 +61,7 @@
         <artifactId>maven-surefire-report-plugin</artifactId>
         <version>3.0.0-M6</version>
         <configuration>
-          <showSuccess>false</showSuccess>
+          <!-- place your configuration here -->
         </configuration>
       </plugin>
     </plugins>

@@ -6,9 +6,10 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import models.LoginPage;
 
 public class AmazonLoginTest {
-  static final String USER_NAME = "lamia_poi@hotmail.co.uk";
-  static final String USER_PASS = "zbhEbKq5G86eKZ9w";
+  private static final String USER_NAME = null;
+  private static final String USER_PASS = null;
   static final String LOGGED_IN_NAV_TEXT = "Account & Lists";
+  static final String webPage = "https://amazon.co.uk";
 
   Playwright playwright = Playwright.create();
   Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
@@ -18,7 +19,7 @@ public class AmazonLoginTest {
 
   @Test
   void shouldLoginToApplication() {
-    page.navigate("https://amazon.co.uk");
+    page.navigate(webPage);
     page.click("#sp-cc-accept");
     page.click("#nav-link-accountList");
 
@@ -36,7 +37,7 @@ public class AmazonLoginTest {
 
   @Test
   void shouldNotContinueWithWrongEmail() {
-    page.navigate("https://amazon.co.uk");
+    page.navigate(webPage);
     page.click("#sp-cc-accept");
     page.click("#nav-link-accountList");
 
@@ -51,4 +52,19 @@ public class AmazonLoginTest {
     assertThat(page.locator("#auth-error-message-box")).containsText("We cannot find an account with that e-mail address");
   }
 
+  @Test
+  void shouldNotContinueWithWrongPassword() {
+    page.navigate(webPage);
+    page.click("#sp-cc-accept");
+    page.click("#nav-link-accountList");
+
+    page.fill("input[name='email']", USER_NAME);
+    page.click("input[id='continue']");
+
+    page.fill("input[name='password']", "wrongPassword!23");
+    page.click("#signInSubmit");
+
+    assertThat(page.locator("#auth-error-message-box")).containsText("There was a problem");
+    assertThat(page.locator("#auth-error-message-box")).containsText("Your password is incorrect");
+  }
 }

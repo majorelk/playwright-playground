@@ -22,3 +22,4 @@ target/test-classes/TracerInspection.class
 target/test-classes/authorization/whenAuthorizingForAccess.class
 target/test-classes/models/LoginPage.class
 target/test-classes/playwrightsessions/PlaywrightBasics.class
+src/data/users/user.txt
